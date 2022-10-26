@@ -162,9 +162,9 @@ public class EmpanadaFramework : MonoBehaviour
             Empanada randomEmpanada = empanadasNice[UnityEngine.Random.Range(0, empanadasNice.Count)];
 
             tempList.Add(new Empanada(
-                randomEmpanada.flavor1 + UnityEngine.Random.Range(0f, .5f),
-                randomEmpanada.flavor2 + UnityEngine.Random.Range(0f, .5f),
-                randomEmpanada.flavor3 + UnityEngine.Random.Range(0f, .5f)
+                randomEmpanada.flavor1 + UnityEngine.Random.Range(-.5f, .5f),
+                randomEmpanada.flavor2 + UnityEngine.Random.Range(-.5f, .5f),
+                randomEmpanada.flavor3 + UnityEngine.Random.Range(-.5f, .5f)
             ));
         }
 
