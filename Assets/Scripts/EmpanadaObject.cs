@@ -18,7 +18,5 @@ public class EmpanadaObject : MonoBehaviour
         flavor1UI.color = flavor1;
         flavor2UI.color = flavor2;
         flavor3UI.color = flavor3;
-
-        niceUI.gameObject.SetActive(nice);
     }
 }

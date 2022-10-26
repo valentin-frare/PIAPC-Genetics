@@ -87,9 +87,9 @@ public class EmpanadaFramework : MonoBehaviour
         foreach (var empanada in empanadas)
         {
             var empanadaObj = Instantiate(empanadaPrefab, empanadasContent);
-            empanadaObj.GetComponent<EmpanadaObject>().flavor1 = gradient1.Evaluate(empanada.flavor1/3);
-            empanadaObj.GetComponent<EmpanadaObject>().flavor2 = gradient2.Evaluate(empanada.flavor2/3);
-            empanadaObj.GetComponent<EmpanadaObject>().flavor3 = gradient3.Evaluate(empanada.flavor3/3);
+            empanadaObj.GetComponent<EmpanadaObject>().flavor1 = gradient1.Evaluate(empanada.flavor1/2);
+            empanadaObj.GetComponent<EmpanadaObject>().flavor2 = gradient2.Evaluate(empanada.flavor2/2);
+            empanadaObj.GetComponent<EmpanadaObject>().flavor3 = gradient3.Evaluate(empanada.flavor3/2);
             empanadaObj.GetComponent<EmpanadaObject>().nice = empanada.nice;
         }
     }
@@ -157,14 +157,41 @@ public class EmpanadaFramework : MonoBehaviour
     {
         var tempList = new List<Empanada>();
 
+        if (empanadasNice.Count == 12)
+        {
+            foreach (var empanada in empanadasNice)
+            {
+                Empanada tempEmpanada = new Empanada(
+                    empanada.flavor1 + UnityEngine.Random.Range(-.5f, .5f),
+                    empanada.flavor2 + UnityEngine.Random.Range(-.5f, .5f),
+                    empanada.flavor3 + UnityEngine.Random.Range(-.5f, .5f)
+                );
+
+                var prom = (Mathf.Abs(goal.Item1 - tempEmpanada.flavor1) + Mathf.Abs(goal.Item2 - tempEmpanada.flavor2) + Mathf.Abs(goal.Item3 - tempEmpanada.flavor3)) / 3;
+
+                if (Mathf.Abs(prom) < 0.2f)
+                {
+                    tempList.Add(tempEmpanada);
+                    empanada.nice = true;
+                }
+                else
+                {
+                    tempList.Add(empanada);
+                    empanada.nice = true;
+                }
+            }
+
+            return tempList;
+        }
+
         for (var i = 0; i < (lenght - empanadasNice.Count); i++)
         {
             Empanada randomEmpanada = empanadasNice[UnityEngine.Random.Range(0, empanadasNice.Count)];
 
             tempList.Add(new Empanada(
-                randomEmpanada.flavor1 + UnityEngine.Random.Range(-.5f, .5f),
-                randomEmpanada.flavor2 + UnityEngine.Random.Range(-.5f, .5f),
-                randomEmpanada.flavor3 + UnityEngine.Random.Range(-.5f, .5f)
+                randomEmpanada.flavor1 + UnityEngine.Random.Range(-.55f, .55f),
+                randomEmpanada.flavor2 + UnityEngine.Random.Range(-.55f, .55f),
+                randomEmpanada.flavor3 + UnityEngine.Random.Range(-.55f, .55f)
             ));
         }
 
